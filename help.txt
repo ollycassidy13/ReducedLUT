@@ -1,0 +1,46 @@
+Instructions
+-------------------------------------------------------------------
+This program generates source code  for  univariate  functions.  It 
+works by the user specifing  a  text  file  that 
+contains the values of a lookup table specifying  f(x)  for  all  x 
+values
+
+Lookup table as a text File -->  Please  specify  the  following 
+   arguments:
+	-table (string)		: path of  the  table,   in   which 
+	                          each   line    has    a    single   
+	                          hexadecimal value. The table size 
+	                          must be a power of 2.  The  input
+	                          and   output   bit   width    are 
+	                          determined  based  on  the  table 
+	                          size  and  the  maximum  absolute    
+	                          value of the table, respectively.
+	-input (string)    	: path of the input combination data - 
+							the file should contain binary values,
+							with each value the bitwidth of the 
+							table input and on a seperate line
+	-rarity (int)		: specify the rarity threshold to use - 
+							rarity 0 corresponds to no don't
+							cares used, and rarity 1 would be
+							values which appear in the input
+							file once or more
+	-exiguity (int)		:  threshold on how many sub-tables
+							can depend on a given unique 
+							sub-table for it to be eligible for
+							don’t care optimization. Should be 
+							used for runtime/compression
+							efficiency control
+
+The following optional arguments can be used in either mode.
+	-name (string)		: output table and file name.
+	-output (string)	: output folder for  the  generated
+	                          files. The  folder  must  already 
+	                          exist.                     
+	-mdbw (int)		: minimum decomposition bit  width. 
+	                          The default value is 2. 
+	-hbs (0/1)		: higher-bit  split.  The   default 
+	                          value is 1 (0=no, 1=yes). 
+	-ssc (0/1)		: self-similarity compression.  The 
+	                          default value is 1. 
+	-mlc (0/1)		: multi-level   compression.    The 
+	                          default value is 0.
