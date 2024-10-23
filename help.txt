@@ -44,3 +44,5 @@ The following optional arguments can be used in either mode.
 	                          default value is 1. 
 	-mlc (0/1)		: multi-level   compression.    The 
 	                          default value is 0.
+	-bits (0/1)		: store bit sizes in external file. 
+						The default value is 0.

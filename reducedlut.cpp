@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
     std::string input_path;
     std::string table_name = "reducedlut";
     std::string output_path = ".";
-    reducedlut::struct_configs configs = {2, 1, 1, 0};
+    reducedlut::struct_configs configs = {2, 1, 1, 0, 0};
     int rarity = 0;
     long int exiguity = 0;
 
@@ -58,7 +58,9 @@ int main(int argc, char* argv[]) {
             configs.ssc = std::stoi(argv[i + 1]);
         } else if (current_arg == "-mlc") {
             configs.mlc = std::stoi(argv[i + 1]);
-        } else {
+        } else if (current_arg == "-bits") {
+            configs.bits = std::stoi(argv[i + 1]);
+        }else {
             reducedlut::help();
             return 1;
         }
@@ -153,23 +155,25 @@ int main(int argc, char* argv[]) {
         std::cout << "Information: Unable to compress the table!" << std::endl;
     }
 
-    std::ofstream bits_file(output_path + "/../bits.txt", std::ios::app);
-    if (bits_file.is_open()) {
-        if (!final_size.empty()) {
-            bits_file << "Initial Size (bit): " << initial_size << "\n";
-            for (size_t i = 0; i < final_size.size(); i++) {
-                bits_file << "Final Size (bit) for " << table_name << "_v" << i + 1 << ": " << final_size.at(i) << "\n";
+    if (configs.bits) {
+        std::ofstream bits_file(output_path + "/../bits.txt", std::ios::app);
+        if (bits_file.is_open()) {
+            if (!final_size.empty()) {
+                bits_file << "Initial Size (bit): " << initial_size << "\n";
+                for (size_t i = 0; i < final_size.size(); i++) {
+                    bits_file << "Final Size (bit) for " << table_name << "_v" << i + 1 << ": " << final_size.at(i) << "\n";
+                }
+                bits_file.close();
             }
-            bits_file.close();
-        }
+            else {
+                bits_file << "Initial Size (bit): " << initial_size << "\n";
+                bits_file << "Final Size (bit) for " << table_name << "_v1" << ": " << initial_size << "\n";
+                bits_file.close();
+            }
+        } 
         else {
-            bits_file << "Initial Size (bit): " << initial_size << "\n";
-            bits_file << "Final Size (bit) for " << table_name << "_v1" << ": " << initial_size << "\n";
-            bits_file.close();
+            std::cerr << "Error: Could not open bits.txt for writing." << std::endl;
         }
-    } 
-    else {
-        std::cerr << "Error: Could not open bits.txt for writing." << std::endl;
     }
 
     return 0;

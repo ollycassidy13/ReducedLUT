@@ -26,7 +26,7 @@ ReducedLUT
 using namespace std;
 
 namespace reducedlut {
-    struct struct_configs {int mdbw;  bool hbs; bool ssc; bool mlc;};
+    struct struct_configs {int mdbw;  bool hbs; bool ssc; bool mlc; bool bits;};
 
     void reducedlut(vector<long int>& table_data, const string& table_name, const string& output_path, struct struct_configs configs, long int* initial_size, vector<long int>& final_size, const bool dc, int out, std::vector<long int>& dont_care_indices, long int exiguity);
     long int hb_compression(bool ssc, const vector<long int>& t_hb, int w_s, vector<long int>& t_ust, vector<long int>& t_bias, vector<long int>& t_bias_dc, vector<long int>& t_idx, vector<long int>& t_rsh, const int wo_ust, const bool dc, const std::vector<long int>& dont_care_indices, const int w_l, int& yay, long int exiguity);
