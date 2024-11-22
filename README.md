@@ -3,8 +3,6 @@ Lookup tables (LUTs) are frequently used to efficiently store arrays of precompu
 
 This code is part of a submission to the ACM/SIGDA International Symposium on Field-Programmable Gate Arrays 2025
 
-The original code will be found here: https://github.com/ollycassidy13/ReducedLUT
-
 ## Installation
 ```bash
 git clone https://github.com/ollycassidy13/ReducedLUT.git
