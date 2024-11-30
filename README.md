@@ -1,7 +1,7 @@
 # ReducedLUT
 Lookup tables (LUTs) are frequently used to efficiently store arrays of precomputed values for complex mathematical computations. When used in the context of neural networks, these functions exhibit a lack of recognizable patterns which presents an unusual challenge for conventional logic synthesis techniques. ReducedLUT is a tool for compression of lookup tables and generation of their hardware files in Verilog for RTL designs, as we demonstrated across multiple machine learning applications where don't care conditions can be leveraged for greater compresion. This project is a derivative work based on [CompressedLUT](https://github.com/kiabuzz/CompressedLUT).
 
-This code is part of a submission to the ACM/SIGDA International Symposium on Field-Programmable Gate Arrays 2025
+This code is part of a paper accepted to the ACM/SIGDA International Symposium on Field-Programmable Gate Arrays 2025.
 
 ## Installation
 ```bash
@@ -12,20 +12,20 @@ make
     
 ## Getting Started
 #### Lookup Table as a Text File
-A text (.txt) file, containing the values of your lookup table, should be prepared as an input. The file must contain a power of 2 lines, each of which is a single hexadecimal value in ascending input order. An example of such a text file can be found in table.txt. The following command generates hardware files corresponding to the lookup table described in that text file.
+A text (.txt) file, containing the values of your lookup table, should be prepared as an input. The file must contain a power of 2 lines, each of which is a single hexadecimal value in ascending input order. An example of such a text file can be found in `table.txt`. The following command generates hardware files corresponding to the lookup table described in that text file.
 
 ```bash
 ./reducedlut -table table.txt
 ```
 
 #### Introducing *Don't Cares*
-A text (.txt) file, containing the values of your lookup table, should be prepared as before. Another text file containing the input data should be prepared too, containing the data to be used to determine *don't cares*. This should be arranged as binary values each on a seperate line with a bitwidth equal to the table's input bitwidth. A rarity and exiguity threshold should also be specified (for more information on these parameters see the help.txt file).
+A text (.txt) file, containing the values of your lookup table, should be prepared as before. Another text file containing the input data should be prepared too, containing the data to be used to determine *don't cares*. This should be arranged as binary values each on a seperate line with a bitwidth equal to the table's input bitwidth. A rarity and exiguity threshold should also be specified (for more information on these parameters see the `help.txt` file).
 
 ```bash
 ./reducedlut -table table.txt -input input.txt -exiguity 4 -rarity 1
 ```
 
-See the help.txt file for command line arguments in more detail.
+See the `help.txt` file for command line arguments in more detail.
 
 ## Summary of Major Modifications
 - The novelty of our work is through the integration of *don't cares* within the heart of the LUT decomposition to enhance its capabilities
