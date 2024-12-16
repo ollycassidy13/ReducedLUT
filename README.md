@@ -1,4 +1,4 @@
-# ReducedLUT
+# ReducedLUT <a href="https://doi.org/10.5281/zenodo.14499541"><img src="https://zenodo.org/badge/874439825.svg" alt="DOI"></a>
 Lookup tables (LUTs) are frequently used to efficiently store arrays of precomputed values for complex mathematical computations. When used in the context of neural networks, these functions exhibit a lack of recognizable patterns which presents an unusual challenge for conventional logic synthesis techniques. ReducedLUT is a tool for compression of lookup tables and generation of their hardware files in Verilog for RTL designs, as we demonstrated across multiple machine learning applications where don't care conditions can be leveraged for greater compresion. This project is a derivative work based on [CompressedLUT](https://github.com/kiabuzz/CompressedLUT).
 
 This code is part of a paper accepted to the ACM/SIGDA International Symposium on Field-Programmable Gate Arrays 2025.
