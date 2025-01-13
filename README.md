@@ -27,6 +27,23 @@ A text (.txt) file, containing the values of your lookup table, should be prepar
 
 See the `help.txt` file for command line arguments in more detail.
 
+## ReducedLUT Flow
+
+This section describes how to evaluate LUT based neural networks using the ReducedLUT methodology. The process described in the publication is based on [NeuraLUT](https://github.com/MartaAndronic/NeuraLUT), where trained models are mapped to a series of L-LUTs. To get started:
+
+1. **Train and Map**  
+   First, train a NeuraLUT model following the instructions provided in the [NeuraLUT repository](https://github.com/MartaAndronic/NeuraLUT). The trained model should then be mapped into L-LUTs, one for each neuron.
+
+2. **Inference and Logging**  
+   After the L-LUTs are obtained, run an inference pass on your training dataset. During this step, log each neuron's input in text files. 
+
+3. **Run ReducedLUT**  
+   Use the logged neuron inputs (text files) as well as each neuron's corresponding L-LUT to run the ReducedLUT script. Each neuron should be processed independently. ReducedLUT will evaluate the L-LUT and input data and provide the compressed L-LUT as a Verilog file.
+
+Below is a diagram illustrating the flow:
+
+![ReducedLUT Flow Diagram](img/flow.jpg)
+
 ## Summary of Major Modifications
 - The novelty of our work is through the integration of *don't cares* within the heart of the LUT decomposition to enhance its capabilities
 - ReducedLUT is specifically optimised to implement *don't cares* within machine learning applications
